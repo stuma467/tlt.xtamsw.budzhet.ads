@@ -17,9 +17,7 @@
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -43,10 +41,7 @@
             box-shadow: var(--shadow);
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        header { text-align: center; margin-bottom: 40px; }
 
         .avatar {
             font-size: 64px;
@@ -59,17 +54,8 @@
             margin-bottom: 15px;
         }
 
-        h1 {
-            margin: 0 0 8px 0;
-            font-size: 32px;
-            color: var(--text-main);
-        }
-
-        .subtitle {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin: 0;
-        }
+        h1 { margin: 0 0 8px 0; font-size: 32px; color: var(--text-main); }
+        .subtitle { font-size: 16px; color: var(--text-muted); margin: 0; }
 
         .section-title {
             font-size: 20px;
@@ -80,7 +66,6 @@
             display: inline-block;
         }
 
-        /* Сетка проектов */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -96,6 +81,7 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -103,10 +89,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
-        .project-icon {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
+        .project-icon { font-size: 32px; margin-bottom: 10px; }
 
         .project-name {
             font-size: 18px;
@@ -122,11 +105,7 @@
             flex-grow: 1;
         }
 
-        .project-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .project-links { display: flex; gap: 10px; flex-wrap: wrap; }
 
         .pwa-badge {
             display: inline-block;
@@ -140,7 +119,7 @@
             vertical-align: middle;
             margin-left: 6px;
         }
-        
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -152,34 +131,71 @@
             font-weight: 500;
             transition: background-color 0.2s ease, opacity 0.2s ease;
             border: 1px solid transparent;
+            cursor: pointer;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: #ffffff;
+        .btn-primary { background-color: var(--primary-color); color: #ffffff; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-outline { background-color: transparent; color: var(--text-main); border-color: var(--border-color); }
+        .btn-outline:hover { background-color: #f3f4f6; }
+
+        /* === Спойлер «История версий» === */
+        .card-toggle {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--primary-color);
+            font-weight: 600;
+            user-select: none;
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
+        .toggle-arrow {
+            display: inline-block;
+            font-size: 10px;
+            transition: transform 0.25s ease;
         }
 
-        .btn-outline {
-            background-color: transparent;
+        .project-card.expanded .toggle-arrow { transform: rotate(180deg); }
+
+        .changelog-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+
+        .project-card.expanded .changelog-wrapper { grid-template-rows: 1fr; }
+
+        .changelog { overflow: hidden; }
+
+        .changelog ul {
+            margin: 12px 0 0 0;
+            padding: 0;
+            list-style: none;
+            font-size: 13px;
+        }
+
+        .changelog li {
+            padding: 7px 0;
+            color: var(--text-muted);
+            border-bottom: 1px solid #f3f4f6;
+            line-height: 1.4;
+        }
+
+        .changelog li:last-child { border-bottom: none; }
+
+        .changelog li strong {
             color: var(--text-main);
-            border-color: var(--border-color);
+            font-weight: 600;
         }
 
-        .btn-outline:hover {
-            background-color: #f3f4f6;
-        }
-
-        .btn-ghost {
-            background-color: #f1f5f9;
-            color: var(--text-main);
-        }
-
-        .btn-ghost:hover {
-            background-color: #e2e8f0;
+        .changelog li .changelog-date {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-left: 4px;
         }
 
         /* Блок поддержки */
@@ -192,23 +208,16 @@
             text-align: center;
         }
 
-        .support-box p {
-            margin: 0 0 15px 0;
-            color: var(--text-main);
-        }
+        .support-box p { margin: 0 0 15px 0; color: var(--text-main); }
 
         .support-box .btn {
             padding: 12px 24px;
             font-size: 16px;
+            margin: 0 4px;
         }
 
         /* Контакты */
-        .contacts-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 15px;
-        }
+        .contacts-grid { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 15px; }
 
         .contact-item {
             display: inline-flex;
@@ -224,9 +233,7 @@
             transition: background-color 0.2s;
         }
 
-        .contact-item:hover {
-            background: #e5e7eb;
-        }
+        .contact-item:hover { background: #e5e7eb; }
 
         /* Футер */
         footer {
@@ -238,9 +245,7 @@
             text-align: center;
         }
 
-        .footer-links {
-            margin-bottom: 10px;
-        }
+        .footer-links { margin-bottom: 10px; }
 
         .footer-links a {
             color: var(--primary-color);
@@ -249,36 +254,12 @@
             font-weight: 500;
         }
 
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
+        .footer-links a:hover { text-decoration: underline; }
 
-        .ad-files {
-            margin-top: 12px;
-            padding: 12px;
-            background-color: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 8px;
-            font-size: 13px;
-        }
-
-        .ad-files strong {
-            display: block;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        /* Адаптивность */
         @media (max-width: 600px) {
-            .container {
-                padding: 25px 20px;
-            }
-            h1 {
-                font-size: 26px;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 25px 20px; }
+            h1 { font-size: 26px; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -295,7 +276,7 @@
         <h2 class="section-title">Мои приложения</h2>
         <div class="projects-grid">
 
-             <!-- Приложение 1: Личный помощник -->
+            <!-- Приложение 1: Личный помощник -->
             <div class="project-card">
                 <div class="project-icon">📊</div>
                 <h3 class="project-name">Личный помощник: бюджет, работа, дом, планер</h3>
@@ -306,8 +287,22 @@
                     <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.budzhet" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
                     <a href="https://github.com/xtamsw/tlt.xtamsw.budzhet" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
                 </div>
+                <div class="card-toggle">
+                    <span>История версий</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="changelog-wrapper">
+                    <div class="changelog">
+                        <ul>
+                            <li><strong>v1.3.0</strong><span class="changelog-date">· 15.10.2026</span> — добавлен модуль «Кухня», исправлена тёмная тема</li>
+                            <li><strong>v1.2.0</strong><span class="changelog-date">· 01.10.2026</span> — новый экран «Кондитерская», экспорт бюджета в CSV</li>
+                            <li><strong>v1.1.0</strong><span class="changelog-date">· 15.09.2026</span> — модуль «Авто», напоминания о ТО</li>
+                            <li><strong>v1.0.0</strong><span class="changelog-date">· 01.09.2026</span> — первый релиз в RuStore</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            
+
             <!-- Приложение 2: Живые обои -->
             <div class="project-card">
                 <div class="project-icon">🖼️</div>
@@ -318,6 +313,20 @@
                 <div class="project-links">
                     <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.wallpaper" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
                     <a href="https://github.com/xtamsw/tlt.xtamsw.wallpaper" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+                </div>
+                <div class="card-toggle">
+                    <span>История версий</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="changelog-wrapper">
+                    <div class="changelog">
+                        <ul>
+                            <li><strong>v2.1.0</strong><span class="changelog-date">· 20.10.2026</span> — сцена «Электричка», новые станции метро</li>
+                            <li><strong>v2.0.0</strong><span class="changelog-date">· 05.10.2026</span> — переработана сцена «Дороги», добавлен ночной режим</li>
+                            <li><strong>v1.1.0</strong><span class="changelog-date">· 20.09.2026</span> — настройка количества машин и поездов</li>
+                            <li><strong>v1.0.0</strong><span class="changelog-date">· 10.09.2026</span> — первый релиз</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -337,6 +346,20 @@
                     <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.metrolines" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
                     <a href="https://github.com/xtamsw/tlt.xtamsw.metrolines" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
                 </div>
+                <div class="card-toggle">
+                    <span>История версий</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="changelog-wrapper">
+                    <div class="changelog">
+                        <ul>
+                            <li><strong>v1.4.0</strong><span class="changelog-date">· 18.10.2026</span> — новые достижения, баланс пассажиропотока</li>
+                            <li><strong>v1.3.0</strong><span class="changelog-date">· 01.10.2026</span> — добавлены реки и мосты</li>
+                            <li><strong>v1.2.0</strong><span class="changelog-date">· 15.09.2026</span> — система достижений</li>
+                            <li><strong>v1.0.0</strong><span class="changelog-date">· 01.09.2026</span> — первый релиз</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -347,7 +370,7 @@
             Работают прямо в браузере и устанавливаются на телефон как обычные приложения. Данные хранятся локально.
         </p>
         <div class="projects-grid">
-        
+
             <!-- PWA: Бюджет -->
             <div class="project-card">
                 <div class="project-icon">💰</div>
@@ -358,8 +381,20 @@
                 <div class="project-links">
                     <a href="https://xtamsw.github.io/budget-pwa/" class="btn btn-primary" target="_blank" rel="noopener">Открыть</a>
                 </div>
+                <div class="card-toggle">
+                    <span>История версий</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="changelog-wrapper">
+                    <div class="changelog">
+                        <ul>
+                            <li><strong>v1.1.0</strong><span class="changelog-date">· 12.10.2026</span> — офлайн-режим, установка на главный экран</li>
+                            <li><strong>v1.0.0</strong><span class="changelog-date">· 01.10.2026</span> — первый релиз PWA</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        
+
             <!-- PWA: Планер -->
             <div class="project-card">
                 <div class="project-icon">🗓️</div>
@@ -370,10 +405,22 @@
                 <div class="project-links">
                     <a href="https://xtamsw.github.io/planer-pwa/" class="btn btn-primary" target="_blank" rel="noopener">Открыть</a>
                 </div>
+                <div class="card-toggle">
+                    <span>История версий</span>
+                    <span class="toggle-arrow">▼</span>
+                </div>
+                <div class="changelog-wrapper">
+                    <div class="changelog">
+                        <ul>
+                            <li><strong>v1.1.0</strong><span class="changelog-date">· 12.10.2026</span> — напоминания, тёмная тема</li>
+                            <li><strong>v1.0.0</strong><span class="changelog-date">· 01.10.2026</span> — первый релиз PWA</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        
+
         </div>
-        
+
         <!-- Поддержка -->
         <h2 class="section-title">Поддержать разработчика</h2>
         <div class="support-box">
@@ -403,7 +450,7 @@
             <a href="https://vk.com/xtamsw_apk" class="contact-item" target="_blank" rel="noopener">ВКонтакте</a>
             <a href="https://max.ru/join/SXlnQ05eO1RzdAEj5XHWw5tMWxEWF3_XaCGEQ80ILB4" class="contact-item" target="_blank" rel="noopener">MAX</a>
         </div>
-        
+
         <!-- Футер -->
         <footer>
             <div class="footer-links">
@@ -412,6 +459,17 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // Раскрытие/сворачивание истории версий при клике на карточку.
+        // Клик по ссылкам (кнопки RuStore/GitHub/Открыть) не переключает спойлер.
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return; // пропускаем клики по ссылкам
+                card.classList.toggle('expanded');
+            });
+        });
+    </script>
 
 </body>
 </html>
