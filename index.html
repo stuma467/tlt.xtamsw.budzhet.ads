@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Разработка приложений и игр</title>
-    <meta name="description" content="Личная страница разработчика Misha Statskiy. Приложения для Android: живые обои, симулятор метро и личный помощник для бюджета. Все приложения доступны в RuStore.">
+    <title>XTAMSW — приложения, игры и PWA</title>
+	<meta name="description" content="Приложения и игры от XTAMSW: живые обои, симулятор метро, личный помощник, планер и бюджет в формате PWA. RuStore и GitHub.">
     <style>
         :root {
+			color-scheme: light;
             --primary-color: #3b82f6;
             --primary-hover: #2563eb;
             --bg-color: #f3f4f6;
@@ -15,7 +16,51 @@
             --text-muted: #6b7280;
             --border-color: #e5e7eb;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+			--card-inner-bg: #f9fafb;
+			--avatar-bg: #e0e7ff;
+			--nav-bg: rgba(249, 250, 251, 0.85);
+			--badge-bg: #dcfce7;
+			--badge-text: #166534;
+			--scroll-thumb: #d1d5db;
+			--scroll-thumb-hover: #9ca3af;
+			--date-color: #9ca3af;
+			--support-from: #eff6ff;
+			--support-to: #f0f9ff;
+			--support-border: #bfdbfe;
+			--btn-outline-hover: #f3f4f6;
+			--contact-bg: #f3f4f6;
+			--contact-hover-bg: #e5e7eb;
+			--changelog-border: #f3f4f6;
+			--card-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+			--nav-offset: 100px;
         }
+
+		[data-theme="dark"] {
+			color-scheme: dark;
+			--bg-color: #0f172a;
+			--card-bg: #1e293b;
+			--text-main: #f1f5f9;
+			--text-muted: #94a3b8;
+			--border-color: #334155;
+			--shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+			--card-inner-bg: #0f172a;
+			--avatar-bg: #1e3a8a;
+			--nav-bg: rgba(30, 41, 59, 0.85);
+			--badge-bg: #14532d;
+			--badge-text: #86efac;
+			--scroll-thumb: #475569;
+			--scroll-thumb-hover: #64748b;
+			--date-color: #64748b;
+			--support-from: #1e3a8a;
+			--support-to: #1e293b;
+			--support-border: #1e40af;
+			--btn-outline-hover: #334155;
+			--contact-bg: #334155;
+			--contact-hover-bg: #475569;
+			--changelog-border: #334155;
+			--card-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+		}
 
         * { box-sizing: border-box; }
 
@@ -31,7 +76,9 @@
             align-items: flex-start;
             min-height: 100vh;
         }
-
+		body, .container, .top-nav, .support-box, .changelog li {
+			transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+		}
         .container {
             background-color: var(--card-bg);
             max-width: 900px;
@@ -46,7 +93,7 @@
         .avatar {
             font-size: 64px;
             display: inline-block;
-            background: #e0e7ff;
+            background: var(--avatar-bg);
             width: 96px;
             height: 96px;
             line-height: 96px;
@@ -57,6 +104,10 @@
         h1 { margin: 0 0 8px 0; font-size: 32px; color: var(--text-main); }
         .subtitle { font-size: 16px; color: var(--text-muted); margin: 0; }
 
+		html {
+			scroll-behavior: smooth;
+		}
+
         .section-title {
             font-size: 20px;
             margin-top: 40px;
@@ -64,6 +115,7 @@
             padding-bottom: 8px;
             border-bottom: 2px solid var(--primary-color);
             display: inline-block;
+			scroll-margin-top: var(--nav-offset);
         }
 
         .projects-grid {
@@ -74,19 +126,19 @@
         }
 
         .project-card {
-            background: #f9fafb;
+            background: var(--card-inner-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease,
+						background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--card-hover-shadow);
         }
 
         .project-icon { font-size: 32px; margin-bottom: 10px; }
@@ -112,8 +164,8 @@
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.5px;
-            background: #dcfce7;
-            color: #166534;
+            background: var(--badge-bg);
+			color: var(--badge-text);
             padding: 2px 8px;
             border-radius: 10px;
             vertical-align: middle;
@@ -137,7 +189,7 @@
         .btn-primary { background-color: var(--primary-color); color: #ffffff; }
         .btn-primary:hover { background-color: var(--primary-hover); }
         .btn-outline { background-color: transparent; color: var(--text-main); border-color: var(--border-color); }
-        .btn-outline:hover { background-color: #f3f4f6; }
+        .btn-outline:hover { background: var(--btn-outline-hover); }
 
         /* === Спойлер «История версий» === */
         .card-toggle {
@@ -151,6 +203,7 @@
             color: var(--primary-color);
             font-weight: 600;
             user-select: none;
+			cursor: pointer;
         }
 
         .toggle-arrow {
@@ -169,19 +222,44 @@
 
         .project-card.expanded .changelog-wrapper { grid-template-rows: 1fr; }
 
-        .changelog { overflow: hidden; }
+        .changelog {
+			overflow: hidden;
+		}
 
         .changelog ul {
-            margin: 12px 0 0 0;
-            padding: 0;
-            list-style: none;
-            font-size: 13px;
-        }
+			margin: 12px 0 0 0;
+			padding: 0 8px 0 0;               /* запас справа под скроллбар */
+			list-style: none;
+			font-size: 13px;
+
+			max-height: 220px;                /* ← фиксированная высота списка */
+			overflow-y: auto;                 /* ← своя прокрутка внутри */
+			-webkit-overflow-scrolling: touch;/* плавный скролл на iOS */
+
+			/* Мягкое затухание у нижней границы, чтобы было видно, что есть ещё */
+			scrollbar-width: thin;
+			scrollbar-color: var(--scroll-thumb) transparent;
+		}
+
+		/* Стилизация скроллбара (Chrome / Edge / Safari) */
+		.changelog ul::-webkit-scrollbar {
+			width: 6px;
+		}
+		.changelog ul::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		.changelog ul::-webkit-scrollbar-thumb {
+			background: var(--scroll-thumb);
+			border-radius: 3px;
+		}
+		.changelog ul::-webkit-scrollbar-thumb:hover {
+			background: var(--scroll-thumb-hover);
+		}
 
         .changelog li {
             padding: 7px 0;
             color: var(--text-muted);
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid var(--changelog-border);
             line-height: 1.4;
         }
 
@@ -193,15 +271,15 @@
         }
 
         .changelog li .changelog-date {
-            color: #9ca3af;
+            color: var(--date-color);
             font-size: 12px;
             margin-left: 4px;
         }
 
         /* Блок поддержки */
         .support-box {
-            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
-            border: 1px solid #bfdbfe;
+            background: linear-gradient(135deg, var(--support-from) 0%, var(--support-to) 100%);
+			border: 1px solid var(--support-border);
             border-radius: 12px;
             padding: 25px;
             margin-top: 20px;
@@ -223,17 +301,17 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: #f3f4f6;
+            background: var(--contact-bg);
             padding: 8px 14px;
             border-radius: 20px;
             text-decoration: none;
             color: var(--text-main);
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, color 0.3s ease;
         }
 
-        .contact-item:hover { background: #e5e7eb; }
+        .contact-item:hover { background: var(--contact-hover-bg); }
 
         /* Футер */
         footer {
@@ -257,31 +335,130 @@
         .footer-links a:hover { text-decoration: underline; }
 
         @media (max-width: 600px) {
+			.nav-links {
+				flex-wrap: nowrap;
+				overflow-x: auto;
+				justify-content: flex-start;
+				scrollbar-width: none;
+			}
+			.nav-links::-webkit-scrollbar { display: none; }
+			.nav-links a { font-size: 12px; padding: 6px 10px; }
             .container { padding: 25px 20px; }
             h1 { font-size: 26px; }
             .projects-grid { grid-template-columns: 1fr; }
         }
+		
+		.top-nav {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			margin: 0 0 30px 0;
+			padding: 8px 12px;
+			background: var(--nav-bg);
+			border: 1px solid var(--border-color);
+			border-radius: 12px;
+			position: sticky;
+			top: 12px;
+			z-index: 10;
+			backdrop-filter: blur(8px);
+		}
+
+		.nav-links {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 8px;
+			flex: 1;
+			min-width: 0;
+		}
+
+		.nav-links a {
+			display: inline-flex;
+			align-items: center;
+			gap: 4px;
+			padding: 6px 12px;
+			border-radius: 8px;
+			font-size: 13px;
+			font-weight: 500;
+			color: var(--text-main);
+			text-decoration: none;
+			transition: background-color 0.2s, color 0.2s;
+			white-space: nowrap;
+		}
+
+		.nav-links a:hover {
+			background: var(--primary-color);
+			color: #fff;
+		}
+
+		.theme-toggle {
+			flex-shrink: 0;
+			width: 36px;
+			height: 36px;
+			padding: 0;
+			background: transparent;
+			border: 1px solid var(--border-color);
+			border-radius: 8px;
+			color: var(--text-main);
+			font-size: 16px;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+		}
+
+		.theme-toggle:hover {
+			background: var(--primary-color);
+			border-color: var(--primary-color);
+			transform: rotate(-15deg);
+		}
     </style>
+	<script>
+	(function(){
+		var t = localStorage.getItem('theme');
+		if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		document.documentElement.setAttribute('data-theme', t);
+	})();
+	</script>
+	<meta property="og:title" content="XTAMSW — разработка приложений и игр">
+	<meta property="og:description" content="Приложения и игры для Android: живые обои, симулятор метро, личный помощник и PWA.">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://xtamsw.github.io/">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
 </head>
 <body>
 
     <div class="container">
+		<nav class="top-nav">
+			<div class="nav-links">
+				<a href="#apps">📱 Приложения</a>
+				<a href="#games">🎮 Игры</a>
+				<a href="#pwa">🌐 PWA</a>
+				<a href="#support_ruble">💛 Поддержать рублём</a>
+				<a href="#contacts">✈️ Контакты</a>
+			</div>
+			<button class="theme-toggle" id="themeToggle" type="button" aria-label="Переключить тему">🌙</button>
+		</nav>
+		
         <header>
-            <div class="avatar">📱</div>
-            <h1>Misha Statskiy</h1>
+            <h1>XTAMSW</h1>
             <p class="subtitle">Разработка приложений и игр</p>
+			<p>
+				Если у вас есть пожелания, предложения или идеи по доработке приложений или игр или по созданию новых - пишите в <a href="#contacts">Telegram</a>. С радостью воплощу ваши идеи в жизнь. 💛
+			</p>
         </header>
 
         <!-- Проекты -->
-        <h2 class="section-title">Мои приложения</h2>
+        <h2 class="section-title" id="apps">📱 Мои приложения</h2>
         <div class="projects-grid">
 
             <!-- Приложение 1: Личный помощник -->
             <div class="project-card">
                 <div class="project-icon">📊</div>
-                <h3 class="project-name">Личный помощник: бюджет, работа, дом, планер</h3>
+                <h3 class="project-name">Личный помощник</h3>
                 <p class="project-desc">
-                    Многомодульное приложение для учёта бюджета, работы, авто, кондитерской, здоровья и кухни. Без регистрации, без рекламы, все данные хранятся локально.
+                    Многомодульное приложение для учёта бюджета, платежей, работы, авто, кондитерской, здоровья, кухни, дел, посещённых регионов и заметок.
                 </p>
                 <div class="project-links">
                     <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.budzhet" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
@@ -311,7 +488,7 @@
             <!-- Приложение 2: Живые обои -->
             <div class="project-card">
                 <div class="project-icon">🖼️</div>
-                <h3 class="project-name">Живые обои: Дороги, Метро, Электрички</h3>
+                <h3 class="project-name">Живые обои</h3>
                 <p class="project-desc">
                     Три полноценные живые сцены в одном приложении: город с машинами, станция метро и пригородная электричка. День и ночь, настройка станций и плавная анимация.
                 </p>
@@ -335,13 +512,13 @@
 
         </div>
 
-        <h2 class="section-title">Мои игры</h2>
+        <h2 class="section-title" id="games">🎮 Мои игры</h2>
         <div class="projects-grid">
 
             <!-- Игра 1: Симулятор Метро -->
             <div class="project-card">
                 <div class="project-icon">🚇</div>
-                <h3 class="project-name">Симулятор Метро (Metro Flow)</h3>
+                <h3 class="project-name">Симулятор Метро</h3>
                 <p class="project-desc">
                     Строй линии, управляй пассажиропотоком и развивай транспортную сеть города. Умные пассажиры, поезда, реки и мосты, более 40 достижений.
                 </p>
@@ -365,7 +542,7 @@
         </div>
 
         <!-- Веб-приложения (PWA) -->
-        <h2 class="section-title">Веб-приложения (PWA)</h2>
+        <h2 class="section-title" id="pwa">🌐 Веб-приложения (PWA)</h2>
         <p style="color: var(--text-muted); font-size: 14px; margin-top: -10px; margin-bottom: 20px;">
             Работают прямо в браузере и устанавливаются на телефон как обычные приложения. Данные хранятся локально.
         </p>
@@ -376,7 +553,7 @@
                 <div class="project-icon">💰</div>
                 <h3 class="project-name">Бюджет <span class="pwa-badge">PWA</span></h3>
                 <p class="project-desc">
-                    Веб-версия личного помощника для учёта бюджета. Открывается в браузере, устанавливается на главный экран телефона и работает как обычное приложение — без RuStore и регистрации.
+                    Веб-версия личного помощника для учёта бюджета. Открывается в браузере, устанавливается на главный экран телефона и работает как обычное приложение.
                 </p>
                 <div class="project-links">
                     <a href="https://xtamsw.github.io/budget-pwa/" class="btn btn-primary" target="_blank" rel="noopener">Открыть</a>
@@ -420,28 +597,30 @@
         </div>
 
         <!-- Поддержка -->
-        <h2 class="section-title">Поддержать разработчика</h2>
+        <h2 class="section-title" id="support_ruble">💛 Поддержать рублём</h2>
         <div class="support-box">
             <p>
                 Сейчас я восстанавливаюсь после перелома ноги, и любая поддержка очень поможет.
                 Спасибо, что пользуетесь моими приложениями и играми!
             </p>
+			<a href="https://messenger.sbrf.ru/sl/rDzv5SVSDmtTHrBQX" class="btn btn-primary" target="_blank" rel="noopener">
+                💚 СберБанк
+            </a>
             <a href="https://t.tb.ru/pm_short/4GWeJk88eay" class="btn btn-primary" target="_blank" rel="noopener">
                 💛 Т-Банк
-            </a>
-            <a href="https://messenger.sbrf.ru/sl/rDzv5SVSDmtTHrBQX" class="btn btn-primary" target="_blank" rel="noopener">
-                💚 СберБанк
             </a>
         </div>
 
         <!-- Контакты -->
-        <h2 class="section-title">Telegram</h2>
+        <h2 class="section-title" id="contacts">✈️ Telegram</h2>
+		<div class="contacts-grid">
+            <a href="https://t.me/liza_crispy" class="btn btn-primary" target="_blank" rel="noopener">🧁 ТОРТЫ И ДЕСЕРТЫ НА ЗАКАЗ - @liza_crispy 🧁</a>
+        </div>
         <div class="contacts-grid">
             <a href="https://t.me/xtamsw" class="contact-item" target="_blank" rel="noopener">ЛС - @xtamsw</a>
             <a href="https://t.me/xtamsw_posts" class="contact-item" target="_blank" rel="noopener">Канал (личный) - @xtamsw_posts</a>
             <a href="https://t.me/xtamsw_music" class="contact-item" target="_blank" rel="noopener">Канал (музыка) - @xtamsw_music</a>
             <a href="https://t.me/xtamsw_apk" class="contact-item" target="_blank" rel="noopener">Канал (приложения) - @xtamsw_apk</a>
-            <a href="https://t.me/liza_crispy" class="contact-item" target="_blank" rel="noopener">🧁 ТОРТЫ И ДЕСЕРТЫ НА ЗАКАЗ - @liza_crispy 🧁</a>
         </div>
         <h2 class="section-title">Другие соцсети</h2>
         <div class="contacts-grid">
@@ -462,11 +641,56 @@
         // Раскрытие/сворачивание истории версий при клике на карточку.
         // Клик по ссылкам (кнопки RuStore/GitHub/Открыть) не переключает спойлер.
         document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.closest('a')) return; // пропускаем клики по ссылкам
-                card.classList.toggle('expanded');
-            });
-        });
+			card.addEventListener('click', (e) => {
+				if (e.target.closest('a') || e.target.closest('.changelog-wrapper')) return;
+				// Не переключаем, если пользователь что-то выделил
+				if (window.getSelection().toString().length > 0) return;
+				card.classList.toggle('expanded');
+			});
+		});
+		// Переключение светлой / тёмной темы
+		(function () {
+			const root = document.documentElement;
+			const btn = document.getElementById('themeToggle');
+
+			function applyTheme(theme) {
+				root.setAttribute('data-theme', theme);
+				btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+				btn.title = theme === 'dark' ? 'Светлая тема' : 'Тёмная тема';
+			}
+
+			btn.addEventListener('click', () => {
+				const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+				applyTheme(next);
+				localStorage.setItem('theme', next);
+			});
+
+			// Синхронизация иконки с уже применённой темой (ставится в <head>)
+			applyTheme(root.getAttribute('data-theme') || 'light');
+		})();
+		// Динамический отступ для якорной навигации:
+		// высота sticky-навбара + его top + запас.
+		(function () {
+			const nav = document.querySelector('.top-nav');
+			if (!nav) return;
+
+			function updateNavOffset() {
+				const rect = nav.getBoundingClientRect();
+				const top = parseFloat(getComputedStyle(nav).top) || 0;
+				// высота навбара + отступ sticky + 16px «воздуха»
+				const offset = Math.ceil(rect.height + top + 16);
+				document.documentElement.style.setProperty('--nav-offset', offset + 'px');
+			}
+
+			updateNavOffset();
+			window.addEventListener('resize', updateNavOffset);
+			window.addEventListener('orientationchange', updateNavOffset);
+
+			// На случай, если навбар меняет высоту без resize (например, шрифты догрузились)
+			if ('ResizeObserver' in window) {
+				new ResizeObserver(updateNavOffset).observe(nav);
+			}
+		})();
     </script>
 
 </body>
