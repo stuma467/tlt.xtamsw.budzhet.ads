@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Личный помощник: бюджет - Официальный сайт</title>
+    <title>Misha Statskiy — Разработка приложений и игр</title>
+    <meta name="description" content="Личная страница разработчика Misha Statskiy. Приложения для Android: живые обои, симулятор метро и личный помощник для бюджета. Все приложения доступны в RuStore.">
     <style>
         :root {
             --primary-color: #3b82f6;
@@ -12,6 +13,12 @@
             --card-bg: #ffffff;
             --text-main: #1f2937;
             --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -23,81 +30,209 @@
             padding: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
         .container {
             background-color: var(--card-bg);
-            max-width: 600px;
+            max-width: 900px;
             width: 100%;
             padding: 40px 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
+            box-shadow: var(--shadow);
         }
 
-        .app-icon {
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
             font-size: 64px;
-            margin-bottom: 20px;
             display: inline-block;
             background: #e0e7ff;
             width: 96px;
             height: 96px;
             line-height: 96px;
             border-radius: 24px;
+            margin-bottom: 15px;
         }
 
         h1 {
-            margin: 0 0 10px 0;
-            font-size: 28px;
+            margin: 0 0 8px 0;
+            font-size: 32px;
             color: var(--text-main);
         }
 
-        .package-name {
-            font-family: monospace;
-            background: #f1f5f9;
-            padding: 4px 8px;
-            border-radius: 6px;
+        .subtitle {
+            font-size: 16px;
             color: var(--text-muted);
-            font-size: 14px;
+            margin: 0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-top: 40px;
             margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-color);
             display: inline-block;
         }
 
-        p {
+        /* Сетка проектов */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .project-card {
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .project-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 6px 0;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            font-size: 14px;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin: 0 0 15px 0;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            padding: 12px 24px;
+            padding: 8px 16px;
             border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.2s ease;
-            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease, opacity 0.2s ease;
+            border: 1px solid transparent;
         }
 
-        .btn:hover {
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
             background-color: var(--primary-hover);
         }
 
-        .footer-links {
-            border-top: 1px solid #e5e7eb;
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+        }
+
+        .btn-ghost {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        .btn-ghost:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* Блок поддержки */
+        .support-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .support-box p {
+            margin: 0 0 15px 0;
+            color: var(--text-main);
+        }
+
+        .support-box .btn {
+            padding: 12px 24px;
+            font-size: 16px;
+        }
+
+        /* Контакты */
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f3f4f6;
+            padding: 8px 14px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .contact-item:hover {
+            background: #e5e7eb;
+        }
+
+        /* Футер */
+        footer {
+            margin-top: 40px;
             padding-top: 20px;
+            border-top: 1px solid var(--border-color);
             font-size: 14px;
             color: var(--text-muted);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 10px;
         }
 
         .footer-links a {
             color: var(--primary-color);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 8px;
             font-weight: 500;
         }
 
@@ -106,8 +241,8 @@
         }
 
         .ad-files {
-            margin-top: 15px;
-            padding: 15px;
+            margin-top: 12px;
+            padding: 12px;
             background-color: #f8fafc;
             border: 1px dashed #cbd5e1;
             border-radius: 8px;
@@ -116,38 +251,108 @@
 
         .ad-files strong {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--text-main);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="app-icon">📊</div>
-        
-        <h1>Личный помощник: бюджет</h1>
-        <div class="package-name">tlt.xtamsw.budzhet</div>
-        
-        <p>
-            Многомодульное приложение для учёта бюджета, работы, авто, кондитерской, здоровья и кухни. 
-            Все данные хранятся локально на вашем устройстве.
-        </p>
+        <header>
+            <div class="avatar">📱</div>
+            <h1>Misha Statskiy</h1>
+            <p class="subtitle">Разработка приложений и игр для Android</p>
+        </header>
 
-        <!-- Ссылка на Telegram (взята из вашего кода) -->
-        <a href="https://t.me/xtamsw_apk" class="btn" target="_blank" rel="noopener noreferrer">
-            Telegram канал разработчика
-        </a>
+        <!-- Проекты -->
+        <h2 class="section-title">Мои приложения</h2>
+        <div class="projects-grid">
 
-        <div class="footer-links">
-            <p>Разработчик: Misha Statskiy</p>
-            
-            <div class="ad-files">
-                <strong>Для верификации рекламных сетей:</strong>
-                <a href="app-ads.txt" target="_blank">app-ads.txt</a> | 
+            <!-- Приложение 1: Живые обои -->
+            <div class="project-card">
+                <div class="project-icon">🖼️</div>
+                <h3 class="project-name">Живые обои: Дороги, Метро, Электрички</h3>
+                <p class="project-desc">
+                    Три полноценные живые сцены в одном приложении: город с машинами, станция метро и пригородная электричка. День и ночь, настройка станций и плавная анимация.
+                </p>
+                <div class="project-links">
+                    <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.wallpaper" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
+                    <a href="https://github.com/stuma467/tlt.xtamsw.wallpaper" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Приложение 2: Симулятор Метро -->
+            <div class="project-card">
+                <div class="project-icon">🚇</div>
+                <h3 class="project-name">Симулятор Метро (Metro Flow)</h3>
+                <p class="project-desc">
+                    Строй линии, управляй пассажиропотоком и развивай транспортную сеть города. Умные пассажиры, поезда, реки и мосты, более 40 достижений.
+                </p>
+                <div class="project-links">
+                    <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.metrolines" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
+                    <a href="https://github.com/stuma467/tlt.xtamsw.metrolines" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Приложение 3: Личный помощник -->
+            <div class="project-card">
+                <div class="project-icon">📊</div>
+                <h3 class="project-name">Личный помощник: бюджет, работа, дом, планер</h3>
+                <p class="project-desc">
+                    Многомодульное приложение для учёта бюджета, работы, авто, кондитерской, здоровья и кухни. Без регистрации, без рекламы, все данные хранятся локально.
+                </p>
+                <div class="project-links">
+                    <a href="https://www.rustore.ru/catalog/app/tlt.xtamsw.budzhet" class="btn btn-primary" target="_blank" rel="noopener">RuStore</a>
+                    <a href="https://github.com/stuma467/tlt.xtamsw.budzhet" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Поддержка -->
+        <h2 class="section-title">Поддержать разработчика</h2>
+        <div class="support-box">
+            <p>
+                Сейчас я восстанавливаюсь после перелома ноги, и любая поддержка очень поможет.
+                Спасибо, что пользуетесь моими приложениями!
+            </p>
+            <a href="https://www.tinkoff.ru/rm/r_wXAyIKYrOw.agbqMOtRaB/dliB411601" class="btn btn-primary" target="_blank" rel="noopener">
+                💙 Перевести на лечение
+            </a>
+        </div>
+
+        <!-- Контакты -->
+        <h2 class="section-title">Контакты и соцсети</h2>
+        <div class="contacts-grid">
+            <a href="https://t.me/xtamsw" class="contact-item" target="_blank" rel="noopener">✈️ Telegram (личный)</a>
+            <a href="https://t.me/xtamsw_apk" class="contact-item" target="_blank" rel="noopener">📢 Канал @xtamsw_apk</a>
+            <a href="https://vk.com/xtamsw_apk" class="contact-item" target="_blank" rel="noopener">🔵 ВКонтакте</a>
+            <a href="https://max.ru/join/SXlnQ05eO1RzdAEj5XHWw5tMWxEWF3_XaCGEQ80ILB4" class="contact-item" target="_blank" rel="noopener">🟣 MAX</a>
+            <a href="https://t.me/liza_crispy" class="contact-item" target="_blank" rel="noopener">🧁 Канал жены (тортики)</a>
+        </div>
+
+        <!-- Футер -->
+        <footer>
+            <div class="footer-links">
+                <a href="app-ads.txt" target="_blank">app-ads.txt</a> |
                 <a href="ads.txt" target="_blank">ads.txt</a>
             </div>
-        </div>
+            <p style="margin: 5px 0;">&copy; 2026 Misha Statskiy. Все права защищены.</p>
+        </footer>
     </div>
 
 </body>
