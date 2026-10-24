@@ -173,3 +173,11 @@ yabbi.me, 675d9254-4032-47ed-9074-b6ef4dbab522, DIRECT
 yeahmobi.com, 113772, RESELLER
 zmaticoo.com, 1091822546, DIRECT
 zmaticoo.com, 114490, RESELLER
+google.com, pub-5533854580432370, RESELLER, f08c47fec0942fa0
+improvedigital.com, 2031, RESELLER
+uis.mobfox.com, 165, RESELLER
+hyperad.tech, 215, RESELLER
+yandex.com, 100297980, DIRECT
+betweendigital.com, 43554, RESELLER
+Contextweb.com, 562899, RESELLER, 89ff185a4c4e857c
+hyperad.tech, 150, RESELLER
